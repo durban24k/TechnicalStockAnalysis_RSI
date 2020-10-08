@@ -10,6 +10,7 @@ end=dt.datetime.now()
 data=web.DataReader(ticker,"yahoo",start,end)
 
 delta=data['Adj Close'].diff(1)
+
 delta.dropna(inplace=True)
 
 positive=delta.copy()
@@ -27,10 +28,11 @@ relative_strength=avg_gain/avg_loss
 RSI=100.0-(100.0/(1.0+relative_strength))
 
 combined=pd.DataFrame()
+
 combined['Adj Close']=data['Adj Close']
 combined['RSI']=RSI
 
-plt.figure(figsize=(12,8))
+plt.figure(figsize=(19,9))
 
 ax1 = plt.subplot(211)
 ax1.plot(combined.index,combined['Adj Close'],color="lightgray")
