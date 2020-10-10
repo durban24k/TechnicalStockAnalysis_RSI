@@ -1,28 +1,29 @@
-import websocket, numpy as np,json,pprint,talib,pandas as pd,matplotlib.pyplot as plt
-from datetime import datetime
+# import matplotlib.pyplot as plt,matplotlib.animation as animation
+import websocket_data
 
-SOCKET="wss://stream.binance.com:9443/ws/ethusdt@kline_1m"
+websocket_data.ws.runforever()
 
-def on_open(ws):
-     print('Connection Open') 
+# times=[]
+# closes=[]
 
-def on_close(ws):
-     print("Connection Closed")
 
-def on_message(ws,message):
-     json_message=json.loads(message)
-     close=json_message['k']['c']
-     epoch_time=json_message['E']
-     dt_time=datetime.fromtimestamp(epoch_time/1000)
-     data=pd.DataFrame()
-     data['Time']=dt_time.time()
-     data['Close']=close
 
-     plt.figure(figsize=(15,8))
+# fig=plt.figure()
+# ax=fig.add_subplot(1,1,1)
 
-     plt.plot(data['Time'],data['Close'],color='lightgray')
-     plt.set_title("Adjusted Close Price",color="white")
-     plt.show()
 
-ws=websocket.WebSocketApp(SOCKET,on_open=on_open,on_close=on_close,on_message=on_message)
-ws.run_forever()
+# def animate(i):
+#     global dt_time,close,times,closes
+    
+#     times.append(dt_time)
+#     closes.append(close)
+
+#     times=times[-24:]
+#     closes=closes[-24:]
+
+#     ax.clear()
+#     ax.plot(times,closes,color='lightgray')
+#     plt.title("Adjusted Close Price",color="white")
+
+# ani=animation.FuncAnimation(fig,animate,interval=2000)
+# plt.show()
