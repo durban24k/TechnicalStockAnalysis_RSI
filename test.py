@@ -1,7 +1,6 @@
 # import matplotlib.pyplot as plt,matplotlib.animation as animation
 import websocket_data
-
-websocket_data.ws.runforever()
+from websocket_data import data
 
 # times=[]
 # closes=[]
@@ -15,7 +14,7 @@ websocket_data.ws.runforever()
 # def animate(i):
 #     global dt_time,close,times,closes
     
-#     times.append(dt_time)
+#     times.append(websocket_data.dt_time)
 #     closes.append(close)
 
 #     times=times[-24:]
